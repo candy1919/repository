@@ -1,0 +1,9 @@
+.pull-right{
+	float: right;
+}
+.pull-right:after{
+	content: "";
+	width: 0;
+	height: :0;
+	clear: both;
+}
