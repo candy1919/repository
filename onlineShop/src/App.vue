@@ -1,15 +1,24 @@
 <template>
   <div id="app">
     <v-header></v-header>
+    <router-view></router-view>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
 import vHeader from './components/head/vHeader'
+import vFooter from './components/footer/vFooter'
 export default {
   name: 'app',
+  data(){
+    return {
+      msg:'999'
+    }
+  },
   components:{
-    vHeader
+    vHeader,
+    vFooter
   }
 }
 </script>

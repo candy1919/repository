@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from '@/App'
+import goods from '@/components/content/goods'
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'App',
-      children:[
+        {
+          path:'/',
+          component:resolve => require(['@/components/content/goods'], resolve)
+        },
       	{
       		path:'/seller',
       		component:resolve => require(['@/components/content/seller'], resolve)
@@ -21,7 +21,5 @@ export default new Router({
       		path:'/ratings',
       		component:resolve => require(['@/components/content/ratings'], resolve)
       	},
-      ]
-    }
   ]
 })

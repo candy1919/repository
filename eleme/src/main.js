@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import components from './components'
-import './common/css/icon.css'
+import components from 'components'
+import 'common/css/icon.css'
+import 'common/less/common.less'
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 Object.keys(components).forEach(key=>{
 	var name=key.replace(/(\w)/,(v)=>v.toUpperCase())
 	Vue.component(`v${name}`,components[key])

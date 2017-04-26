@@ -7,11 +7,11 @@
 			<div class="content-area">
 				<div class="wrap-name">
 					<i class="i-brand"></i>
-					<span class="name">粥品香坊（大运村）</span>
+					<span class="name">{{this.seller.name}}</span>
 				</div>
 				<div class="inf-detach">
-					<span class="detach">蜂鸟专送</span>/
-					<span class="time">38分钟送达</span>
+					<span class="detach">{{this.seller.description}}</span>/
+					<span class="time">{{this.seller.deliveryTime}}分钟送达</span>
 				</div>
 				<div class="wrap-discount">
 					<div class="pay">
@@ -31,11 +31,25 @@
 	</div>		
 </template>
 <script>
+import {dataAjax} from '@/ajax.js'
 	export default{
 		data(){
 			return {
-				msg:'ss'
+				seller:{}
 			}
+		},
+		created(){
+			// GET /someUrl
+		  this.$http.get('/api/seller').then(response => {
+
+		    // get body data
+		    this.someData = response.body;
+		    if(this.someData.errno==0){
+		    	this.seller=this.someData.data;
+		    }
+		  }, response => {
+		    // error callback
+		  });
 		}
 	}
 </script>

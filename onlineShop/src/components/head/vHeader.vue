@@ -20,29 +20,16 @@
 	</div>	
 </template>
 <script>
-	
+	export default{
+		data(){
+			return {
+				msg:'ss'
+			}
+		}
+	}
 </script>
 <style lang="less" scoped>
-.icon(@w:15px,@h:15px){ 
-    display: inline-block; 
-    width: @w;
-	height: @h; 
-    white-space:nowrap; 
-    letter-spacing: -1em; 
-    text-indent: -99em; 
-    color: transparent;
-    background-size: 100%
-}
-.icon:before {
-    /* 伪元素插入空格文本 */
-    content: '\3000'; 
-}
-// .icon(@w:15px,@h:15px){
-// 	display: inline-block;
-// 	width: @w;
-// 	height: @h;
-// 	background-size: 100%;
-// }
+@import "../../assets/less/common.less";
 .detail{
 	overflow: hidden;
 	white-space: nowrap;
