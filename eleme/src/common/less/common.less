@@ -7,3 +7,13 @@
 	vertical-align: middle;
 	background: rgba(255, 255, 255, 0.1);
 }
+.clearfix{
+	display: inline-block;
+	&:after{
+		display: block;
+		content: '';
+		height: 0;
+		visibility: visible;
+		clear:both;
+	}
+}

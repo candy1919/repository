@@ -7,16 +7,16 @@
 			<div class="content-area">
 				<div class="wrap-name">
 					<i class="i-brand"></i>
-					<span class="name">{{this.seller.name}}</span>
+					<span class="name">{{seller.name}}</span>
 				</div>
 				<div class="inf-detach">
-					<span class="detach">{{this.seller.description}}</span>/
-					<span class="time">{{this.seller.deliveryTime}}分钟送达</span>
+					<span class="detach">{{seller.description}}</span>/
+					<span class="time">{{seller.deliveryTime}}分钟送达</span>
 				</div>
 				<div class="wrap-discount">
-					<div class="pay">
-						<i class="i-discount"></i>
-						<p class="content">在线支付</p>
+					<div class="pay" v-if="seller.supports">
+						<i :class="iconMap[seller.supports[0].type]"></i>
+						<p class="content">{{seller.supports[0].description}}</p>
 					</div>
 					<a class="num-discount"><span class="num">5</span>个<i class="icon-keyboard_arrow_right"></i></a>
 				</div>
@@ -24,32 +24,34 @@
 		</div>
 		<div class="wrap-bulletin">
 			<i class="i-bulletin"></i>
-			<p class="content">啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+			<p class="content">{{seller.bulletin}}</p>
 			<i class="icon-keyboard_arrow_right"></i>
 		</div>
+		</div>
+		<div class="detail ">
+			<div class="detail-wrap clearfix">
+				<div class="content">
+					
+				</div>
+			</div>
+			<div class="close">
+				<i class="icon-close"></i>
+			</div>
+		</div>
+		
+			
 		</div>
 	</div>		
 </template>
 <script>
 import {dataAjax} from '@/ajax.js'
 	export default{
+		props:['seller'],
 		data(){
-			return {
-				seller:{}
+			return{
+				iconMap:['i-decrease','i-discount','i-special','i-invoice','i-guarantee']
 			}
-		},
-		created(){
-			// GET /someUrl
-		  this.$http.get('/api/seller').then(response => {
-
-		    // get body data
-		    this.someData = response.body;
-		    if(this.someData.errno==0){
-		    	this.seller=this.someData.data;
-		    }
-		  }, response => {
-		    // error callback
-		  });
+			
 		}
 	}
 </script>
@@ -81,6 +83,32 @@ import {dataAjax} from '@/ajax.js'
 		@w2:24px/@devicePixelRatio;
 		@w3:36px/@devicePixelRatio;
 		padding: @w1 @w1 @w2 @w3
+	}
+	.detail{
+		position: fixed;
+		background: rgba(7, 17, 27, 0.8);
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		z-index: 100;
+		color: #fff;
+		.detail-wrap{
+			min-height: 100%;
+		}
+		.content{
+			margin-top: 64px;
+			padding-bottom: 64px;
+		}
+		.close{
+			position: relative;
+			margin: -64px auto 0 auto;
+			width: 32px;
+			height: 32px;
+			clear: both;
+			font-size: 32px;
+		}
 	}
 }
 .inf-seller{
@@ -131,13 +159,45 @@ import {dataAjax} from '@/ajax.js'
 		display: inline-block;
 		padding: 14px/@devicePixelRatio 0; 
 	}
-	.i-discount{
+	.i-decrease{
 		.i;
 		@siz:24px/@devicePixelRatio;
 		width: @siz;
 		height: @siz;
 		margin-right: 8px/@devicePixelRatio;
 		background-image: url('../../assets/header/decrease_1@2x.png');
+	}
+	.i-discount{
+		.i;
+		@siz:24px/@devicePixelRatio;
+		width: @siz;
+		height: @siz;
+		margin-right: 8px/@devicePixelRatio;
+		background-image: url('../../assets/header/discount_1@2x.png');
+	}
+	.i-special{
+		.i;
+		@siz:24px/@devicePixelRatio;
+		width: @siz;
+		height: @siz;
+		margin-right: 8px/@devicePixelRatio;
+		background-image: url('../../assets/header/special_1@2x.png');
+	}
+	.i-invoice{
+		.i;
+		@siz:24px/@devicePixelRatio;
+		width: @siz;
+		height: @siz;
+		margin-right: 8px/@devicePixelRatio;
+		background-image: url('../../assets/header/invoice_1@2x.png');
+	}
+	.i-guarantee{
+		.i;
+		@siz:24px/@devicePixelRatio;
+		width: @siz;
+		height: @siz;
+		margin-right: 8px/@devicePixelRatio;
+		background-image: url('../../assets/header/guarantee_1@2x.png');
 	}
 	.content{
 		display: inline-block;
